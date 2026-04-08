@@ -1,3 +1,4 @@
+using PLP.Enemies;
 using UnityEngine;
 
 namespace PLP
@@ -18,7 +19,11 @@ namespace PLP
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            
+            if (collision.TryGetComponent(out Enemy component) == true)
+            {
+                component.TakeDamage();
+                Destroy(gameObject);
+            }
         }
     }   
 }
